@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd">
+
+
+
+    <context:annotation-config/>
+    <!-- 扫描service下的包-->
+    <context:component-scan base-package="cn.zuo.service"/>
+
+
+
+
+    <!--将所有业务类注入spring，配置或注解-->
+    <bean id="BookServiceImpl" class="cn.zuo.service.BookServiceImpl">
+        <property name="bookMapper" ref="bookMapper"/>
+    </bean>
+
+    <bean id="UserServiceImpl" class="cn.zuo.service.UserServiceImpl">
+        <property name="UserDao" ref="userDao"/>
+    </bean>
+
+    <bean id="LeaseServiceImpl" class="cn.zuo.service.LeaseServiceImpl">
+        <property name="leaseDao" ref="leaseMapper"/>
+    </bean>
+
+    <bean id="LeasingServiceImpl" class="cn.zuo.service.LeasingServiceImpl">
+        <property name="leasingMapper" ref="leasingMapper"/>
+    </bean>
+
+
+    <!--声明式事务配置-->
+    <bean id="TransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!--注入数据源-->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!--aop事务支持-->
+</beans>

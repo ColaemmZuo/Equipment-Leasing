@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="cn.zuo.dao.EquipMapper">
+    <insert id="addEquip" parameterType="Equip">
+        insert into equipment.con_equip (equipID, equipName, equipDesc, equipPrice, equipOut, equipSpec, equipCount)
+        values (#{equipID},#{equipName},#{equipDesc},#{equipPrice},#{equipOut},#{equipSpec},#{equipCount});
+    </insert>
+
+    <delete id="deleteEquipById" parameterType="int">
+        delete from equipment.con_equip where equipID = #{equipID};
+    </delete>
+
+    <delete id="deleteEquipByName" parameterType="String">
+        delete from equipment.con_equip where equipName = #{equipName};
+    </delete>
+
+
+    <update id="updateEquip" parameterType="Equip">
+        update equipment.con_equip set
+        equipName = #{equipName},
+        equipDesc = #{equipDesc},
+        equipPrice = #{equipPrice},
+        equipOut = #{equipOut},
+        equipSpec = #{equipSpec},
+        equipCount = #{equipCount}
+        where equipID = #{equipID};
+    </update>
+
+    <select id="queryEquipById" resultType="Equip">
+        select * from equipment.con_equip
+        where equipID = #{equipID};
+    </select>
+
+    <select id="queryAllEquip" resultType="Equip">
+        select  * from equipment.con_equip;
+    </select>
+
+    <select id="queryEquipByName" resultType="Equip">
+        select * from equipment.con_equip
+        where equipName = #{equipName};
+    </select>
+</mapper>

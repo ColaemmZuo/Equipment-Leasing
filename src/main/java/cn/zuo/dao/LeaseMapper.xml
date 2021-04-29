@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.zuo.dao.LeaseMapper">
+    <insert id="addLease" parameterType="Leaser">
+        insert into equipment.lease (username, password,userphone)
+        values (#{username},#{password},#{userphone});
+    </insert>
+
+    <delete id="deleteLeaseById" parameterType="int">
+        delete from equipment.lease where leaseId = #{leaseId};
+    </delete>
+
+    <update id="updateLease" parameterType="Leaser">
+        update equipment.lease set username  = #{username},
+        password = #{password},
+        userphone = #{userphone}
+        where leaseId = #{leaseId};
+    </update>
+
+    <select id="queryLeaseByUsername" resultType="Leaser">
+        select * from equipment.lease where username = #{username};
+    </select>
+
+    <select id="queryAllLease" resultType="Leaser">
+        select * from equipment.lease;
+    </select>
+</mapper>
